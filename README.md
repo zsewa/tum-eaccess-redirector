@@ -3,9 +3,9 @@ JavaScript Browser plugin to redirect to the eAccess version (proxyfied) when we
 
 To install use a plugin for your browser like tampermonkey or Greasemonkey. Than visit https://greasyfork.org/de/scripts/21778-tum-eaccess-redirector.
 
-###### Future plans
-Readablility should be improved.
-Creating automatic login.
+### Future plans
+Readablility should be improved. <br>
+Creating automatic login. <br>
 I'm about to create a minified version of the script.
 
 
