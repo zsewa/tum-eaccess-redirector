@@ -133,10 +133,6 @@ function core(mode) {
   if (domain.indexOf('www.reaxys.com/reaxys/session.do') != -1) {
     var domain = 'https://www-reaxys-com.eaccess.ub.tum.de/reaxys/secured/search.do';
   }
-  //New Reaxys
-  if (domain.indexOf('new.reaxys.com') != -1) {
-    var domain = 'https://new-reaxys-com.eaccess.ub.tum.de';
-  }
   //Essential science indicators Thomas Reuters InCites
   if (hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2ESI') != -1) {
     var domain = 'https://esi.incites.thomsonreuters.com/IndicatorsAction.action';
