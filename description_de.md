@@ -24,7 +24,7 @@ Es werden folgende Berechtigungen von Ihrem Script-Manager benötigt:
   * `eAccess_reloader_mode`: *Speichert Ihre Einstellungen zum Weiterleitungsmodus*
   * `eAccess_reloader_userexclude`: *Speichert Ihre hinzugefügte Außnahmen*
   * `last_domain`, `last_domain_hostname`: *Zum komfortablen Hinzufügen von Außnahmen wird die letzte Weiterleitung lokal protokolliert.*
-  * `last_version`: *Protokolliert die Versionsnummer des Userscripts lokal, um den Nutzer für den Fall größerer Änderungen am Script einfach benachrichtigen zu können*
+  * `last_version`: *Protokolliert die Versionsnummer des Userscripts lokal, um den Nutzer im Fall größerer Änderungen am Script einfach benachrichtigen zu können*
 
 * `GM_registerMenuCommand`: *Erzeugt Menupunkte für Ihrem Userscript Manager.*
   * *Änderung der Außnahmen*
