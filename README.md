@@ -1,13 +1,13 @@
 # TUM-eAccess-Redirector
-[Updates to these files are manually synced to Greasyfork](https://greasyfork.org/en/scripts/21778-tum-eaccess-redirector)
+[Updates to these files are manually synced to Greasyfork](https://greasyfork.org/scripts/21778)
 
 JavaScript Userscript to redirect to the eAccess version (proxyfied) when websites licenced by the Technical University Munich are accessed.
 
-To install use a plugin for your browser like tampermonkey or Greasemonkey. Than visit the script on [Greasyfork](https://greasyfork.org/en/scripts/21778-tum-eaccess-redirector) or copy form here.
+To install, copy from here or use [Greasyfork](https://greasyfork.org/scripts/21778). You will need a userscript manager like Tampermonkey or Greasemonkey.
 
 ### Future plans
-Readablility should be improved. <br>
-Creating automatic login. <br>
-I'm about to create a minified version of the script.
+- [] Readablility should be improved
+- [] Create automatic login
+- [] create a minified version of the script
 
 
