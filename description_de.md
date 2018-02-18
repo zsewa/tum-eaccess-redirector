@@ -3,7 +3,7 @@ Mit dem Script werden lizensierte Seiten automatisch über den eAccess Proxy der
 
 Das Script automatisiert die Funktion des Bookmarklets.
 
-## Auswirkungen der Script Installation / Funktionen
+## Funktionen
 * Weiterleitung auf die eAccess-Version von über eAccess erreichbaren Seiten (55+ Seiten). Dafür stehen 3 Modi zur Verfügung: Silent(default), mit Weiterleitung über eine HTML-Seite und ein Modus in dem der Nutzer vor jeder Weiterleitung gefragt wird.
 * Die Weiterleitung auf bestimmten Seiten kann dauerhaft unterbunden werden
 * Einstellungen sind auf den eAccess-Seiten zu finden [Link](https://eaccess.ub.tum.de)
