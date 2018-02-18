@@ -21,10 +21,10 @@ Es werden JavaScript-Dokumente aus externen Quellen geladen:
 
 Es werden folgende Berechtigungen von Ihrem Script-Manager benötigt:
 * GM_setValue und GM_getValue
-  * eAccess_reloader_mode: *Speichert den Weiterleitungsmodus*
-  * eAccess_reloader_userexclude: *Speichert vom Nutzer hinzugefügte Außnahmen*
-  * last_domain, last_domain_hostname: *Zum komfortablen Hinzufügen von Außnahmen wird die letzte Weiterleitung protokolliert*
-  * last_version: *Protokolliert die Versionsnummer des Userscripts um den für den Fall größerer Änderungen am Script einfach benachrichtigen zu können*
+  * eAccess_reloader_mode: *Speichert Ihre Einstellungen zum Weiterleitungsmodus*
+  * eAccess_reloader_userexclude: *Speichert Ihre hinzugefügte Außnahmen*
+  * last_domain, last_domain_hostname: *Zum komfortablen Hinzufügen von Außnahmen wird die letzte Weiterleitung lokal protokolliert.*
+  * last_version: *Protokolliert die Versionsnummer des Userscripts lokal, um den Nutzer für den Fall größerer Änderungen am Script einfach benachrichtigen zu können*
 
 * GM_registerMenuCommand: *Erzeugt Menupunkte für Ihrem Userscript Manager.*
   * *Änderung der Außnahmen*
