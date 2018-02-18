@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            TUM eAccess Redirector
 // @name:de         TUM eAccess Redirector
-// @version         1.0.1.11
+// @version         1.0.1.12
 // @description     Automatically redirect to the proxified equivalent as provided by the libary of the Technische Universitaet Muenchen via the eAccess-System. TUM credentials required.
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
 // @author          zsewa
@@ -220,20 +220,19 @@ function excludeme_reset(security) {
 }
 
 function markaseaccess() {
-  GM_addStyle('.eAccess_userscript_created_content { color: white; z-index:9000; float:true; bottom:0; right:1.5%; position:fixed; float: left; padding: 10px 10px; text-decoration: none; color: black; background: grey; -webkit-border-top-left-radius: 8px; -webkit-border-top-right-radius: 8px; -moz-border-radius-topleft: 8px; -moz-border-radius-topright: 8px; border-top-left-radius: 8px; border-top-right-radius: 8px;}');
-  GM_addStyle('.eAccess_userscript_created_content:hover {background: #3070b3;}');
+  GM_addStyle('.eAccess_userscript_created_content { all: initial; font-family: sans-serif; font-size: small; color: white; z-index:9000; float:true; bottom:0; right:1.5%; position:fixed; float: left; padding: 5px 10px; background: #3070b3; -webkit-border-top-left-radius: 8px; -webkit-border-top-right-radius: 8px; -moz-border-radius-topleft: 8px; -moz-border-radius-topright: 8px; border-top-left-radius: 8px; border-top-right-radius: 8px;}');
   $("body").prepend('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUMeR</div>');
 
   $('.eAccess_userscript_created_content').hover(
-
+    /*in*/
     function() {
       eAccess_userscript_created_content_old_html = $(this).html();
-      $(this).html('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUM eAccess Redirector</a><br><br><a style="color: white;" class="eAccess_userscript_created_content_hide">&nbsp;x&nbsp;(HIDE THIS)</a></div>');
-      $('.eAccess_userscript_created_content_hide').click( function() {
-          $('.eAccess_userscript_created_content').hide();
-        });
+      $(this).html('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUM eAccess Redirector</a><br><br><div style="color: white; text-align: right;" class="eAccess_userscript_created_content_hide">&nbsp;x&nbsp;(HIDE THIS)</div></div>');
+      $('.eAccess_userscript_created_content_hide').on('click', function() {
+        $('.eAccess_userscript_created_content').hide();
+      });
     },
-
+    /*out*/
     function() {
       $(this).html(eAccess_userscript_created_content_old_html);
     }
