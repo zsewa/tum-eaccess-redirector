@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            TUM eAccess Redirector
 // @name:de         TUM eAccess Redirector
-// @version         1.0.1.13
+// @version         1.0.1.14
 // @description     Automatically redirect to the proxified equivalent as provided by the libary of the Technische Universitaet Muenchen via the eAccess-System. TUM credentials required.
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
 // @author          zsewa
@@ -85,6 +85,7 @@
 
 // @match *://error.incites.thomsonreuters.com/error/Error*DestApp=IC2ESI&*Error=IPError
 // @match *://error.incites.thomsonreuters.com/error/Error*DestApp=IC2JCR&*Error=IPError
+// @match *://login.webofknowledge.com/*
 // @match *://login.webofknowledge.com/error/Error*Error=IPError
 
 // @match *://global.factiva.com/
