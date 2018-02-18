@@ -227,7 +227,7 @@ function markaseaccess() {
     /*in*/
     function() {
       eAccess_userscript_created_content_old_html = $(this).html();
-      $(this).html('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUM eAccess Redirector</a><br><br><div style="color: white; text-align: right;" class="eAccess_userscript_created_content_hide">&nbsp;x&nbsp;(HIDE THIS)</div></div>');
+      $(this).html('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUM eAccess Redirector</a><br><br><div style="color: white; text-align: right; cursor: pointer;" class="eAccess_userscript_created_content_hide">&nbsp;x&nbsp;(HIDE THIS)</div></div>');
       $('.eAccess_userscript_created_content_hide').on('click', function() {
         $('.eAccess_userscript_created_content').hide();
       });
