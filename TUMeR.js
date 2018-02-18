@@ -220,7 +220,24 @@ function excludeme_reset(security) {
 }
 
 function markaseaccess() {
-  $("body").prepend('<div id="eAccess_userscript_created_content" style="z-index:9000;float:true;bottom:1.5%;right:1.5%;position:fixed;"><a style="text-decoration: none; color: darkblue;"id="userscript_eAccess_redirector_created_site_link" target="_blank" href="https://login.eaccess.ub.tum.de/login">By <img src="https://www.tum.de/typo3conf/ext/in2template/Resources/Public/Images/tum-logo.svg" height="28 px">&nbsp;&nbsp;<img src="https://www.ub.tum.de/files/eacessbutton.jpg" height="28px" width="28px"></a></div>');
+  GM_addStyle('.eAccess_userscript_created_content { color: white; z-index:9000; float:true; bottom:0; right:1.5%; position:fixed; float: left; padding: 10px 10px; text-decoration: none; color: black; background: grey; -webkit-border-top-left-radius: 8px; -webkit-border-top-right-radius: 8px; -moz-border-radius-topleft: 8px; -moz-border-radius-topright: 8px; border-top-left-radius: 8px; border-top-right-radius: 8px;}');
+  GM_addStyle('.eAccess_userscript_created_content:hover {background: #3070b3;}');
+  $("body").prepend('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUMeR</div>');
+
+  $('.eAccess_userscript_created_content').hover(
+
+    function() {
+      eAccess_userscript_created_content_old_html = $(this).html();
+      $(this).html('<div class="eAccess_userscript_created_content"><a style="color: white;" target="_blank" href="https://login.eaccess.ub.tum.de/login">Redirected by TUM eAccess Redirector</a><br><br><a style="color: white;" class="eAccess_userscript_created_content_hide">&nbsp;x&nbsp;(HIDE THIS)</a></div>');
+      $('.eAccess_userscript_created_content_hide').click( function() {
+          $('.eAccess_userscript_created_content').hide();
+        });
+    },
+
+    function() {
+      $(this).html(eAccess_userscript_created_content_old_html);
+    }
+  );
 }
 
 function addsettingstodom() {
