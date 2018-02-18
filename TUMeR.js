@@ -59,6 +59,7 @@
 // @match *://*.rsc.org/*
 // @match *://*.gbv.de/*
 // @match *://www.reaxys.com/*
+// @match *://new.reaxys.com/*
 
 // @match *://*.aacrjournals.org/*
 // @match *://*.bmj.com/*
@@ -108,88 +109,110 @@ not working:
 Thieme PDF https://profile.thieme.de/HTML/sso/ejournals/login.htm?type=default&subsidiary=www.thieme-connect.de&hook_url=https%3A%2F%2Fwww.thieme-connect.de%2Fproducts%2Febooks%2Fpdf%2F10.1055%2Fb-0034-93621.pdf
 */
 
-function core(mode){
+function core(mode) {
 
-    var domain = location.href;
-    var hostname = document.location.hostname;
-    GM_setValue('last_domain_hostname', hostname);
-    GM_setValue('last_domain', domain);
+  var domain = location.href;
+  var hostname = document.location.hostname;
+  GM_setValue('last_domain_hostname', hostname);
+  GM_setValue('last_domain', domain);
 
-    //special rules - bugfixes
-    //Reaxys
-    if(domain.indexOf('www.reaxys.com/reaxys/session.do') != -1){var domain = 'https://www-reaxys-com.eaccess.ub.tum.de/reaxys/secured/search.do';}
-    //Essential science indicators Thomas Reuters InCites
-    if(hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2ESI') != -1){var domain = 'https://esi.incites.thomsonreuters.com/IndicatorsAction.action';}
-    //Journal Citation Reports Thomas Reuters InCites
-    if(hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2JCR') != -1){var domain = 'https://jcr.incites.thomsonreuters.com/JCRJournalHomeAction.action';}
-    //WebofScience/WebofKnowledge
-    if(hostname == 'login.webofknowledge.com'){var domain = 'https://apps.webofknowledge.com/';}
+  //special rules - bugfixes
+  //Reaxys
+  if (domain.indexOf('www.reaxys.com/reaxys/session.do') != -1) {
+    var domain = 'https://www-reaxys-com.eaccess.ub.tum.de/reaxys/secured/search.do';
+  }
+  //New Reaxys
+  if (domain.indexOf('new.reaxys.com') != -1) {
+    var domain = 'https://new-reaxys-com.eaccess.ub.tum.de';
+  }
+  //Essential science indicators Thomas Reuters InCites
+  if (hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2ESI') != -1) {
+    var domain = 'https://esi.incites.thomsonreuters.com/IndicatorsAction.action';
+  }
+  //Journal Citation Reports Thomas Reuters InCites
+  if (hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2JCR') != -1) {
+    var domain = 'https://jcr.incites.thomsonreuters.com/JCRJournalHomeAction.action';
+  }
+  //WebofScience/WebofKnowledge
+  if (hostname == 'login.webofknowledge.com') {
+    var domain = 'https://apps.webofknowledge.com/';
+  }
 
-    switch(mode) {
-        case 1:
-            //confirmation mode
-            if (window.confirm("Redirect to TUM eAccess?")){void(window.document.location.replace('https://eaccess.ub.tum.de/login?url='+domain));            }
-            break;
-        case 2:
-            //html page mode
-            var html = '<center><img src="http://www.ub.tum.de/files/eacessbutton.jpg" height="40" width="40"></div><br><br>Resource is reloaded via TUM eAccess...<br><br>You are redirected form '+window.location.hostname+' to the fitting resource in the TUM eAccess system. Login may be required.<br><br>To change the behavior of this userscript open it in your Tapermonkey or Greasemonkey extention. You can specify a mode there.<br><br><br><br><br><br>Thanks for using TUM eAccess Redirector.</center>';
-            document.write(html);
-            void(location.href='https://eaccess.ub.tum.de/login?url='+domain); //default way to reload via eacess
-            break;
-        default:
-            //default mode - silent
-            void(window.document.location.replace('https://eaccess.ub.tum.de/login?url='+domain));
-    }
+  switch (mode) {
+    case 1:
+      //confirmation mode
+      if (window.confirm("Redirect to TUM eAccess?")) {
+        void(window.document.location.replace('https://eaccess.ub.tum.de/login?url=' + domain));
+      }
+      break;
+    case 2:
+      //html page mode
+      var html = '<center><img src="http://www.ub.tum.de/files/eacessbutton.jpg" height="40" width="40"></div><br><br>Resource is reloaded via TUM eAccess...<br><br>You are redirected form ' + window.location.hostname + ' to the fitting resource in the TUM eAccess system. Login may be required.<br><br>To change the behavior of this userscript open it in your Tapermonkey or Greasemonkey extention. You can specify a mode there.<br><br><br><br><br><br>Thanks for using TUM eAccess Redirector.</center>';
+      document.write(html);
+      void(location.href = 'https://eaccess.ub.tum.de/login?url=' + domain); //default way to reload via eacess
+      break;
+    default:
+      //default mode - silent
+      void(window.document.location.replace('https://eaccess.ub.tum.de/login?url=' + domain));
+  }
 }
 
-function set_usermode(value){
-    GM_setValue('eAccess_reloader_mode', value);
+function set_usermode(value) {
+  GM_setValue('eAccess_reloader_mode', value);
 }
 
-function excludeme(hostname_passed){
-    var hostname_temp = hostname_passed;
-    var excluseme_userexclude_temp = GM_getValue('eAccess_reloader_userexclude', []);
-    if(excluseme_userexclude_temp.indexOf(hostname_temp) == -1){excluseme_userexclude_temp += ','+hostname_temp;}
-    GM_setValue('eAccess_reloader_userexclude', excluseme_userexclude_temp);
-    excludeme_show();
+function excludeme(hostname_passed) {
+  var hostname_temp = hostname_passed;
+  var excluseme_userexclude_temp = GM_getValue('eAccess_reloader_userexclude', []);
+  if (excluseme_userexclude_temp.indexOf(hostname_temp) == -1) {
+    excluseme_userexclude_temp += ',' + hostname_temp;
+  }
+  GM_setValue('eAccess_reloader_userexclude', excluseme_userexclude_temp);
+  excludeme_show();
 }
 
-function excludeme_edit(){
+function excludeme_edit() {
+  var ex_temp = GM_getValue('eAccess_reloader_userexclude', []);
+  var ex_temp_new = prompt('Ändern Sie etwas und klicken Sie OK. Wollen Sie doch nichts ändern, beenden Sie mit Abbrechen. Aktuelle Ausnahmen: ', ex_temp);
+  if (ex_temp_new !== null) {
+    GM_setValue('eAccess_reloader_userexclude', ex_temp_new);
+  }
+  excludeme_show();
+}
+
+function excludeme_show() {
+  var exc = GM_getValue('eAccess_reloader_userexclude', []);
+  if (exc == []) {
+    var text = 'leer';
+  } else {
+    var text = '';
+  }
+  alert('Ausnahmnen: ' + text + exc);
+  return true;
+}
+
+function excludeme_delete(element, security) {
+  if (security) {
     var ex_temp = GM_getValue('eAccess_reloader_userexclude', []);
-    var ex_temp_new = prompt('Ändern Sie etwas und klicken Sie OK. Wollen Sie doch nichts ändern, beenden Sie mit Abbrechen. Aktuelle Ausnahmen: ',ex_temp);
-    if(ex_temp_new !== null){GM_setValue('eAccess_reloader_userexclude', ex_temp_new);}
+    var ex_temp_new = ex_temp.replace(',' + element, '');
+    GM_setValue('eAccess_reloader_userexclude', ex_temp_new);
     excludeme_show();
+  }
 }
 
-function excludeme_show(){
-    var exc = GM_getValue('eAccess_reloader_userexclude', []);
-    if(exc == []){var text = 'leer';} else {var text = '';}
-    alert( 'Ausnahmnen: '+text+exc );
-    return true;
+function excludeme_reset(security) {
+  if (security) {
+    var excluseme_userexclude_temp = []; //reset via decommenting
+    GM_setValue('eAccess_reloader_userexclude', excluseme_userexclude_temp);
+  }
 }
 
-function excludeme_delete(element, security){
-    if(security){
-        var ex_temp = GM_getValue('eAccess_reloader_userexclude', []);
-        var ex_temp_new = ex_temp.replace(','+element, '');
-        GM_setValue('eAccess_reloader_userexclude', ex_temp_new);
-        excludeme_show();
-    }
+function markaseaccess() {
+  $("body").prepend('<div id="eAccess_userscript_created_content" style="z-index:9000;float:true;bottom:1.5%;right:1.5%;position:fixed;"><a style="text-decoration: none; color: darkblue;"id="userscript_eAccess_redirector_created_site_link" target="_blank" href="https://login.eaccess.ub.tum.de/login">By <img src="https://www.tum.de/typo3conf/ext/in2template/Resources/Public/Images/tum-logo.svg" height="28 px">&nbsp;&nbsp;<img src="https://www.ub.tum.de/files/eacessbutton.jpg" height="28px" width="28px"></a></div>');
 }
 
-function excludeme_reset(security){
-    if(security){
-        var excluseme_userexclude_temp = []; //reset via decommenting
-        GM_setValue('eAccess_reloader_userexclude', excluseme_userexclude_temp);
-    }
-}
-
-function markaseaccess(){
-    $("body").prepend ( '<div id="eAccess_userscript_created_content" style="z-index:9000;float:true;bottom:1.5%;right:1.5%;position:fixed;"><a style="text-decoration: none; color: darkblue;"id="userscript_eAccess_redirector_created_site_link" target="_blank" href="https://login.eaccess.ub.tum.de/login">By <img src="https://www.tum.de/typo3conf/ext/in2template/Resources/Public/Images/tum-logo.svg" height="28 px">&nbsp;&nbsp;<img src="https://www.ub.tum.de/files/eacessbutton.jpg" height="28px" width="28px"></a></div>');
-}
-
-function addsettingstodom(){
-    var settings_html1 = '\
+function addsettingstodom() {
+  var settings_html1 = '\
 <div class="container">\
 <div class="row">\
 <br>\
@@ -199,52 +222,88 @@ Das "TUM eAccess Redirector Userscript" überprüft die URL aufgerufener Seiten 
 <br><br>\
 <div class="row"><div class="eight columns"><h2> Einstellungen </h2><form><b>Modus:</b> Das Script kann in 3 verschieden Modi ausgefürt werden. Dies wirk sich auf das Verhalten aus.<br><br><fieldset><div class="csc-mailform-field"><label for="modeselect">Modus (aktuell: <b>';
 
-    var settings_html2='</b>)</a></label><select name="modeselect" size="3" style="width: 500px"> <option id="userscript_opt_0">Mode 0 (Standard): Automatische Weiterleitung ohne Meldungen</option> <option id="userscript_opt_1">Mode 1 (Confirmation): Vor dem Weiterleiten IMMER fragen (außer Ausnahmen)</option> <option id="userscript_opt_2">Mode 2 (Hinweis): Automatische Weiterleitung mit kurzzeitiger Meldung</option></select></div></fieldset></form></div></div>\
+  var settings_html2 = '</b>)</a></label><select name="modeselect" size="3" style="width: 500px"> <option id="userscript_opt_0">Mode 0 (Standard): Automatische Weiterleitung ohne Meldungen</option> <option id="userscript_opt_1">Mode 1 (Confirmation): Vor dem Weiterleiten IMMER fragen (außer Ausnahmen)</option> <option id="userscript_opt_2">Mode 2 (Hinweis): Automatische Weiterleitung mit kurzzeitiger Meldung</option></select></div></fieldset></form></div></div>\
 <b>Ausnahmen:</b> Das Script leitet auf viele über eAccess erreichbare Seiten um. Sollten Sie das bei bestimmten Seiten NICHT wünschen klicken sie folgenden Link und geben Sie den Hostnamen ein.<br>Geben Sie z.B. statt der URL "http://link.springer.com/content" Folgendes ein: "link.springer.com". Aber z.B.: "www.reaxys.com".<br><br><a id="userscript_add_exeption">Weiterleitungs-Ausnahme hinzufügen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="userscript_show_exeptions">Ausnahmen ansehen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="userscript_delete_exeptions">Ausnahmen löschen</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a id="userscript_edit_exeptions">Ausnahmen manuell bearbeiten (Achtung: Profimodus!)</a><br>\
 <br><br><h2>Vielen Dank, dass Sie den TUM eAccess Redirector nutzen</h2><br></div></div>\
 </div>\
 <div class="three columns"><div class="content-box content-box--heavy content-box--green"><div class="csc-header csc-header-n1"><h4 class="csc-firstHeader">TUM eAccess Redirector</h4></div><p class="bodytext"><a target="_blank" title="Installationsseite" href="https://greasyfork.org/de/scripts/21778-tum-eaccess-redirector" class="external-link-new-window">Installationsseite</a><br>Version: 1.0.1.x<br>Autor: zsewa<!--<br><a href="mailto:eaccess@ub.tum.de">Email an Entwickler</a>--></p></div>\
 ';
 
-    $("body").append ( settings_html1 + GM_getValue('eAccess_reloader_mode', '0') + settings_html2 );
-    $("#userscript_opt_0").click(function() { set_usermode(0); alert('Mode '+GM_getValue('eAccess_reloader_mode', 0)+' wurde gesetzt.'); location.reload(); });
-    $("#userscript_opt_1").click(function() { set_usermode(1); alert('Mode '+GM_getValue('eAccess_reloader_mode', 0)+' wurde gesetzt.'); location.reload(); });
-    $("#userscript_opt_2").click(function() { set_usermode(2); alert('Mode '+GM_getValue('eAccess_reloader_mode', 0)+' wurde gesetzt.'); location.reload(); });
+  $("body").append(settings_html1 + GM_getValue('eAccess_reloader_mode', '0') + settings_html2);
+  $("#userscript_opt_0").click(function() {
+    set_usermode(0);
+    alert('Mode ' + GM_getValue('eAccess_reloader_mode', 0) + ' wurde gesetzt.');
+    location.reload();
+  });
+  $("#userscript_opt_1").click(function() {
+    set_usermode(1);
+    alert('Mode ' + GM_getValue('eAccess_reloader_mode', 0) + ' wurde gesetzt.');
+    location.reload();
+  });
+  $("#userscript_opt_2").click(function() {
+    set_usermode(2);
+    alert('Mode ' + GM_getValue('eAccess_reloader_mode', 0) + ' wurde gesetzt.');
+    location.reload();
+  });
 
-    $("#userscript_add_exeption").click(function() { var link_exclude = prompt('Bitte einen Hostnamen eingeben. Z.B. '+GM_getValue('last_domain_hostname', 'www.reaxys.com')); excludeme(link_exclude); });
-    $("#userscript_show_exeptions").click(function() { excludeme_show(); });
-    $("#userscript_edit_exeptions").click(function() { excludeme_edit(); });
-    $("#userscript_delete_exeptions").click(function() { excludeme_reset(confirm('Wollen Sie wirklich ALLE Ausnahmen entfernen?')); excludeme_show(); });
+  $("#userscript_add_exeption").click(function() {
+    var link_exclude = prompt('Bitte einen Hostnamen eingeben. Z.B. ' + GM_getValue('last_domain_hostname', 'www.reaxys.com'));
+    excludeme(link_exclude);
+  });
+  $("#userscript_show_exeptions").click(function() {
+    excludeme_show();
+  });
+  $("#userscript_edit_exeptions").click(function() {
+    excludeme_edit();
+  });
+  $("#userscript_delete_exeptions").click(function() {
+    excludeme_reset(confirm('Wollen Sie wirklich ALLE Ausnahmen entfernen?'));
+    excludeme_show();
+  });
 }
 
 (function() {
-    'use strict';
-    //store userscript version for prompt at major updates
-    var thisVersion = GM_info.script.version; 
-    GM_setValue('last_version', thisVersion);
+  'use strict';
+  //store userscript version for prompt at major updates
+  var thisVersion = GM_info.script.version;
+  GM_setValue('last_version', thisVersion);
 
-    GM_registerMenuCommand('[TUMeR] Edit exeptions', function() { excludeme_edit(); });
-    var usermode = GM_getValue('eAccess_reloader_mode', 0);
+  GM_registerMenuCommand('[TUMeR] Edit exeptions', function() {
+    excludeme_edit();
+  });
+  var usermode = GM_getValue('eAccess_reloader_mode', 0);
 
-    var hostname = document.location.hostname;
+  var hostname = document.location.hostname;
 
-    var userexclude = GM_getValue('eAccess_reloader_userexclude', []);
+  var userexclude = GM_getValue('eAccess_reloader_userexclude', []);
 
-    if( hostname.indexOf('eaccess.ub.tum.de') == -1){
-        if( userexclude.indexOf(hostname) == -1 ){
-            core(usermode);
-        } else {var host_inner = hostname; GM_registerMenuCommand('[TUMeR] Don\'t exclude '+host_inner, function() { excludeme_delete(host_inner , confirm('Wollen Sie '+host_inner+' wirklich aus den Ausnahmen entfernen?') ); window.location.reload(); }); GM_registerMenuCommand('[TUMeR] Redirect this time', function() { core(0); });}
+  if (hostname.indexOf('eaccess.ub.tum.de') == -1) {
+    if (userexclude.indexOf(hostname) == -1) {
+      core(usermode);
     } else {
-        var domain = location.href;
-        if(domain.indexOf('https://login.eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://login.eaccess.ub.tum.de/login') != -1 || domain.indexOf('http://eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://eaccess.ub.tum.de/login') != -1 || domain.indexOf('http://eaccess.ub.tum.de/login') != -1 ){
-            addsettingstodom();
-        } else {
-            markaseaccess();
-            var last_domain240 = GM_getValue('last_domain');
-            var last_dom_host240 = GM_getValue('last_domain_hostname', 0);
-            GM_registerMenuCommand('[TUMeR] Exclude '+last_domain240, function() { excludeme(last_dom_host240); window.location.href = last_domain240; });
-            //$("#userscript_eAccess_redirector_created_site_link").click(function() {  });
-        }
+      var host_inner = hostname;
+      GM_registerMenuCommand('[TUMeR] Don\'t exclude ' + host_inner, function() {
+        excludeme_delete(host_inner, confirm('Wollen Sie ' + host_inner + ' wirklich aus den Ausnahmen entfernen?'));
+        window.location.reload();
+      });
+      GM_registerMenuCommand('[TUMeR] Redirect this time', function() {
+        core(0);
+      });
     }
+  } else {
+    var domain = location.href;
+    if (domain.indexOf('https://login.eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://login.eaccess.ub.tum.de/login') != -1 || domain.indexOf('http://eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://eaccess.ub.tum.de/menu') != -1 || domain.indexOf('https://eaccess.ub.tum.de/login') != -1 || domain.indexOf('http://eaccess.ub.tum.de/login') != -1) {
+      addsettingstodom();
+    } else {
+      markaseaccess();
+      var last_domain240 = GM_getValue('last_domain');
+      var last_dom_host240 = GM_getValue('last_domain_hostname', 0);
+      GM_registerMenuCommand('[TUMeR] Exclude ' + last_domain240, function() {
+        excludeme(last_dom_host240);
+        window.location.href = last_domain240;
+      });
+      //$("#userscript_eAccess_redirector_created_site_link").click(function() {  });
+    }
+  }
 
 })();
