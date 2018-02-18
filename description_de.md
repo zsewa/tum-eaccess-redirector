@@ -20,16 +20,16 @@ Es werden JavaScript-Dokumente aus externen Quellen geladen:
 * Das JavaScript-Framework jQuery Version 3.1.0 [view code](https://code.jquery.com/jquery-3.1.0.min.js)
 
 Es werden folgende Berechtigungen von Ihrem Script-Manager benötigt:
-* GM_setValue und GM_getValue
-  * eAccess_reloader_mode: *Speichert Ihre Einstellungen zum Weiterleitungsmodus*
-  * eAccess_reloader_userexclude: *Speichert Ihre hinzugefügte Außnahmen*
-  * last_domain, last_domain_hostname: *Zum komfortablen Hinzufügen von Außnahmen wird die letzte Weiterleitung lokal protokolliert.*
-  * last_version: *Protokolliert die Versionsnummer des Userscripts lokal, um den Nutzer für den Fall größerer Änderungen am Script einfach benachrichtigen zu können*
+* `GM_setValue` und `GM_getValue`
+  * `eAccess_reloader_mode`: *Speichert Ihre Einstellungen zum Weiterleitungsmodus*
+  * `eAccess_reloader_userexclude`: *Speichert Ihre hinzugefügte Außnahmen*
+  * `last_domain`, `last_domain_hostname`: *Zum komfortablen Hinzufügen von Außnahmen wird die letzte Weiterleitung lokal protokolliert.*
+  * `last_version`: *Protokolliert die Versionsnummer des Userscripts lokal, um den Nutzer für den Fall größerer Änderungen am Script einfach benachrichtigen zu können*
 
-* GM_registerMenuCommand: *Erzeugt Menupunkte für Ihrem Userscript Manager.*
+* `GM_registerMenuCommand`: *Erzeugt Menupunkte für Ihrem Userscript Manager.*
   * *Änderung der Außnahmen*
   * *Hinzufügen von Außnahmen*
   * *Entfernen von Außnahmen*
   * *Trotz Außnahme einmalig weiterleiten*
 
-* GM_addStyle: *Hinzufügen von CSS Elementen für konsistentes Aussehen erzeugter Elemente*
+* `GM_addStyle`: *Hinzufügen von CSS Elementen für konsistentes Aussehen erzeugter Elemente*
