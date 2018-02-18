@@ -85,8 +85,7 @@
 
 // @match *://error.incites.thomsonreuters.com/error/Error*DestApp=IC2ESI&*Error=IPError
 // @match *://error.incites.thomsonreuters.com/error/Error*DestApp=IC2JCR&*Error=IPError
-// @match *://login.webofknowledge.com/*
-// @match *://login.webofknowledge.com/error/Error*Error=IPError
+// @match *://login.webofknowledge.com/error/Error*Error=IPError*
 
 // @match *://global.factiva.com/
 
@@ -142,7 +141,7 @@ function core(mode) {
   if (hostname == 'error.incites.thomsonreuters.com' && domain.indexOf('error.incites.thomsonreuters.com/error/Error?DestApp=IC2JCR') != -1) {
     var domain = 'https://jcr.incites.thomsonreuters.com/JCRJournalHomeAction.action';
   }
-  //WebofScience/WebofKnowledge
+  //WebofScience/WebofKnowledge Login Pages
   if (hostname == 'login.webofknowledge.com') {
     var domain = 'https://apps.webofknowledge.com/';
   }
