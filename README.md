@@ -6,9 +6,11 @@ JavaScript Userscript to redirect to the eAccess version (proxyfied) when websit
 Also see description in [english (EN)](description_en.md) or [german (DE)](description_de.md).
 
 ## Installation
-To install, copy the code from here, click [here](https://raw.githubusercontent.com/zsewa/TUM-eAccess-Redirector/master/TUMeR.user.js) or use [Greasyfork](https://greasyfork.org/scripts/21778) (recommended). You will need to install an userscript manager plugin like Tampermonkey or Greasemonkey first!
+To install, copy the code from here, click [here](https://raw.githubusercontent.com/zsewa/TUM-eAccess-Redirector/master/TUMeR.user.js) or use [Greasyfork (recommended)](https://greasyfork.org/scripts/21778).
 
-### Future plans
+You will need to install an userscript manager plugin like Tampermonkey or Greasemonkey first!
+
+### Plans
 - [ ] Readablility should be improved
 - [ ] Create automatic login
 - [ ] Create a minified version of the script
