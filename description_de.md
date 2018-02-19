@@ -16,10 +16,10 @@ Das Script automatisiert die Funktion des Bookmarklets.
 * Beachten Sie, dass der systematische Download von Daten über eAccess aus lizenzrechtlichen Gründen nicht gestattet ist!
 
 ## Sicherheit
-Es werden JavaScript-Dokumente aus externen Quellen geladen:
+Es werden JavaScript-Dokumente aus **externen Quellen** geladen:
 * Das JavaScript-Framework jQuery Version 3.1.0 [view code](https://code.jquery.com/jquery-3.1.0.min.js)
 
-Es werden folgende Berechtigungen von Ihrem Script-Manager benötigt:
+Es werden folgende **Berechtigungen** von Ihrem Script-Manager benötigt:
 * `GM_setValue` und `GM_getValue`
   * `eAccess_reloader_mode`: *Speichert Ihre Einstellungen zum Weiterleitungsmodus*
   * `eAccess_reloader_userexclude`: *Speichert Ihre hinzugefügte Außnahmen*
@@ -33,3 +33,6 @@ Es werden folgende Berechtigungen von Ihrem Script-Manager benötigt:
   * *Trotz Außnahme einmalig weiterleiten*
 
 * `GM_addStyle`: *Hinzufügen von CSS Elementen für konsistentes Aussehen erzeugter Elemente*
+
+
+Natürlich können Sie den Quellcode des Scripts selbst überprüfen. The code is maintained on [Github](https://github.com/zsewa/TUM-eAccess-Redirector).
