@@ -35,4 +35,4 @@ Es werden folgende **Berechtigungen** von Ihrem Script-Manager benötigt:
 * `GM_addStyle`: *Hinzufügen von CSS Elementen für konsistentes Aussehen erzeugter Elemente*
 
 
-Natürlich können Sie den Quellcode des Scripts selbst überprüfen. The code is maintained on [Github](https://github.com/zsewa/TUM-eAccess-Redirector).
+Natürlich können Sie den Quellcode des Scripts selbst überprüfen. The code is maintained on [Github zsewa/TUM-eAccess-Redirector](https://github.com/zsewa/TUM-eAccess-Redirector).
