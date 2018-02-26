@@ -6,7 +6,6 @@
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
 // @author          zsewa
 // @namespace       https://greasyfork.org/users/57483
-// @require         https://code.jquery.com/jquery-3.1.0.min.js
 
 // @match *://*.eaccess.ub.tum.de/*
 // @match *://eaccess.ub.tum.de/*
@@ -91,6 +90,7 @@
 
 // @match *://www.video2brain.com/*
 
+// @require https://code.jquery.com/jquery-3.3.1.min.js
 // @grant GM_setValue
 // @grant GM_getValue
 // @grant GM_addStyle
