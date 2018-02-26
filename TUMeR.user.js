@@ -5,7 +5,7 @@
 // @description     Automatically redirect to the proxified equivalent as provided by the libary of the Technische Universitaet Muenchen via the eAccess-System. TUM credentials required.
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
 // @author          zsewa
-// @namespace       https://greasyfork.org/users/57483
+// @namespace       https://github.com/zsewa
 
 // @match *://*.eaccess.ub.tum.de/*
 // @match *://eaccess.ub.tum.de/*
