@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name            TUM eAccess Redirector
 // @name:de         TUM eAccess Redirector
-// @version         1.0.1.15
+// @version         1.0.1.16
 // @description     Automatically redirect to the proxified equivalent as provided by the libary of the Technische Universitaet Muenchen via the eAccess-System. TUM credentials required.
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
-// @author          zsewa
+// @author          Zeno Sewald
 // @namespace       https://github.com/zsewa
 
 // @match *://*.eaccess.ub.tum.de/*
@@ -28,7 +28,7 @@
 
 // @match *://*.thieme-connect.de/*
 // @match *://link.springer.com/*
-// @match *://springer.com/*
+// @match *://*.springer.com/*/book/*
 
 // @match *://apps.webofknowledge.com/*
 // @match *://www.emeraldinsight.com/*
@@ -101,7 +101,7 @@
 /*
 This file is licenced under a MIT licence.
 
-Copyright 2016 - 2018 zsewa <zsewa@outlook.de>
+Copyright 2016 - 2019 Zeno Sewald <zsewa@outlook.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
