@@ -90,6 +90,8 @@
 
 // @match *://www.video2brain.com/*
 
+// @match *://dl.acm.org/*
+
 // @require https://code.jquery.com/jquery-3.3.1.min.js
 // @grant GM_setValue
 // @grant GM_getValue
