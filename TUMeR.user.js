@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            TUM eAccess Redirector
 // @name:de         TUM eAccess Redirector
-// @version         1.0.1.16
+// @version         1.0.1.17
 // @description     Automatically redirect to the proxified equivalent as provided by the libary of the Technische Universitaet Muenchen via the eAccess-System. TUM credentials required.
 // @description:de  Userscript, dass auf einigen Seiten, mit denen die Universitätsbiblothek der Technischen Universität München kooperiert, die eAccess-Version aufruft.
 // @author          Zeno Sewald
@@ -89,6 +89,8 @@
 // @match *://global.factiva.com/
 
 // @match *://www.video2brain.com/*
+
+// @match *://dl.acm.org/*
 
 // @require https://code.jquery.com/jquery-3.3.1.min.js
 // @grant GM_setValue
